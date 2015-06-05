@@ -79,17 +79,18 @@
 			}
 		}
 	}
-	/*
+	
 	function Harc(kezdes){
-
+		
 		document.getElementById("csata_elet").innerHTML="Életerőd: "+elet;
 		document.getElementById("csata_elet_e").innerHTML="Életerereje: "+ellenfel_eletero;
 		
 			if(kezdes){		//jatekos tamad
-				tamadoero=Math.floor((Math.random()*10)+2)+tamadas;
+				tamadoero = Math.floor((Math.random()*10)+2);
+				tamadoero+=tamadas;
 				if(tamadoero>ellenfel_vedettseg){ //megsebezve
 					ellenfel_eletero-=Math.floor((Math.random()* max_jatekos)+min_sebzes);
-					if(ellenfel_eletero=<0){ 
+					if(ellenfel_eletero<=0){ 
 					return true; //nyert
 					}
 				}
@@ -99,10 +100,11 @@
 				kezdes=false;
 			}
 			else{ 			//ellenfel tamad
-				tamadoero=Math.floor((Math.random()*10)+2)+ellenfel_tamadas;
+				tamadoero=Math.floor((Math.random()*10)+2);
+				tamadoero+=ellenfel_tamadas;
 				if(tamadoero>vedettseg){ //megsebezve
 					elet-=Math.floor((Math.random()* max_ellenfel)+min_sebzes_e);
-					if(elet =< 0){ 
+					if(elet <= 0){ 
 					return false; //vesztett 
 					}
 				}
@@ -113,8 +115,13 @@
 			}
 		setTimeout(Harc(),1000);
 	}
-	*/
+	
 	function Csata(ellenfel_eletero,ellenfel_tamadas,ellenfel_vedettseg,max_sebzes_e,min_sebzes_e){
+		this.ellenfel_eletero=ellenfel_eletero;
+		this.ellenfel_tamadas=ellenfel_tamadas;
+		this.ellenfel_vedettseg=ellenfel_vedettseg;
+		this.max_sebzes_e=max_sebzes_e;
+		this.min_sebzes_e=min_sebzes_e;
 		Kuzdelem();
 	}
 	-->
