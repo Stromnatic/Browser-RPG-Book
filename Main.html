@@ -1,6 +1,6 @@
 ﻿<html>
 <head>
-	<script language="JavaScript" type="text/JavaScript">
+	<script>
 	<!--
 	var max_elet, elet;
 	var max_tamadas, tamadas;
@@ -10,29 +10,29 @@
 	var max_sebzes=2, min_sebzes=1;
 	var max_sebzes_e, min_sebzes_e;
 	var ellenfel_eletero, ellenfel_vedettseg, ellenfel_tamadas;
-	var	max_jatekos = max_sebzes - min_sebzes; //2 sebzés közötti különbség, randomolásnál kell
-	var	max_ellenfel = max_sebzes_e - min_sebzes_e;
+	var	max_jatekos = max_sebzes - min_sebzes + 1; //2 sebzés közötti különbség, randomolásnál kell
+	var	max_ellenfel = max_sebzes_e - min_sebzes_e + 1;
 	
 	function Max_Eletero(){
-		max_elet=Math.floor((Math.random()*20)+14);
+		max_elet=Math.floor((Math.random()*21)+14);
 		elet=max_elet;
 		document.getElementById("eletero_kezdeti").innerHTML=max_elet;
 		document.getElementById("eletero_valtozott").innerHTML=max_elet;
 	}
 	function Max_Tamadas(){
-		max_tamadas=Math.floor((Math.random()*10)+8);
+		max_tamadas=Math.floor((Math.random()*11)+8);
 		tamadas=max_tamadas;
 		document.getElementById("tamadas_kezdeti").innerHTML=max_tamadas;
 		document.getElementById("tamadas_valtozott").innerHTML=max_tamadas;
 	}
 	function Max_Vedettseg(){
-		max_vedettseg=Math.floor((Math.random()*10)+8);
+		max_vedettseg=Math.floor((Math.random()*11)+8);
 		vedettseg=max_vedettseg;
 		document.getElementById("vedettseg_kezdeti").innerHTML=max_vedettseg;
 		document.getElementById("vedettseg_valtozott").innerHTML=max_vedettseg;
 	}
 	function Max_Szerencse(){
-		max_szerencse=Math.floor((Math.random()*5)+7);
+		max_szerencse=Math.floor((Math.random()*6)+7);
 		szerencse=max_szerencse;
 		document.getElementById("szerencse_kezdeti").innerHTML=max_szerencse;
 		document.getElementById("szerencse_valtozott").innerHTML=max_szerencse;
@@ -51,8 +51,8 @@
 	
 	function Kuzdelem(){
 		//ki kezdjen?
-		jatekos = Math.floor((Math.random()*5)+1);
-		ellenfel = Math.floor((Math.random()*5)+1);
+		jatekos = Math.floor((Math.random()*6)+1);
+		ellenfel = Math.floor((Math.random()*6)+1);
 		
 		if(jatekos < ellenfel){
 			//ellenfel kezd
@@ -86,11 +86,11 @@
 		document.getElementById("csata_elet_e").innerHTML="Életerereje: "+ellenfel_eletero;
 		
 			if(kezdes){		//jatekos tamad
-				tamadoero = Math.floor((Math.random()*10)+2);
+				tamadoero = Math.floor((Math.random()*11)+2);
 				tamadoero+=tamadas;
 				if(tamadoero>ellenfel_vedettseg){ //megsebezve
-					ellenfel_eletero-=Math.floor((Math.random()* max_jatekos)+min_sebzes);
-					if(ellenfel_eletero<=0){ 
+					ellenfel_eletero -= Math.floor((Math.random()* max_jatekos)+min_sebzes);
+					if(ellenfel_eletero <= 0){ 
 					return true; //nyert
 					}
 				}
@@ -100,10 +100,11 @@
 				kezdes=false;
 			}
 			else{ 			//ellenfel tamad
-				tamadoero=Math.floor((Math.random()*10)+2);
-				tamadoero+=ellenfel_tamadas;
-				if(tamadoero>vedettseg){ //megsebezve
-					elet-=Math.floor((Math.random()* max_ellenfel)+min_sebzes_e);
+				tamadoero = Math.floor((Math.random()*11)+2);
+				tamadoero += ellenfel_tamadas;
+				if(tamadoero > vedettseg){ //megsebezve
+					elet -= Math.floor((Math.random()* max_ellenfel)+min_sebzes_e);
+					console.log(elet);
 					if(elet <= 0){ 
 					return false; //vesztett 
 					}
@@ -113,7 +114,7 @@
 				}
 				kezdes=true;
 			}
-		setTimeout(Harc(),1000);
+		setTimeout(function(){ Harc(); },2000);
 	}
 	
 	function Csata(ellenfel_eletero,ellenfel_tamadas,ellenfel_vedettseg,max_sebzes_e,min_sebzes_e){
