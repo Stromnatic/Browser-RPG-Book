@@ -11,7 +11,8 @@
 	var max_sebzes_e, min_sebzes_e;
 	var ellenfel_eletero, ellenfel_vedettseg, ellenfel_tamadas;
 	var	max_jatekos = max_sebzes - min_sebzes + 1; //2 sebzés közötti különbség, randomolásnál kell
-	var	max_ellenfel = max_sebzes_e - min_sebzes_e + 1;
+	var	max_ellenfel;
+	var repeater;
 	
 	function Max_Eletero(){
 		max_elet=Math.floor((Math.random()*21)+14);
@@ -78,6 +79,7 @@
 				document.getElementById("eredmeny").innerHTML="Jatekos vesztett";
 			}
 		}
+		clearInterval(repeater);
 	}
 	
 	function Harc(kezdes){
@@ -114,7 +116,7 @@
 				}
 				kezdes=true;
 			}
-		setTimeout(function(){ Harc(); },2000);
+		repeater = setTimeout(function(){ Harc(); },2000);
 	}
 	
 	function Csata(ellenfel_eletero,ellenfel_tamadas,ellenfel_vedettseg,max_sebzes_e,min_sebzes_e){
@@ -123,6 +125,7 @@
 		this.ellenfel_vedettseg=ellenfel_vedettseg;
 		this.max_sebzes_e=max_sebzes_e;
 		this.min_sebzes_e=min_sebzes_e;
+		max_ellenfel = max_sebzes_e - min_sebzes_e + 1;
 		Kuzdelem();
 	}
 	-->
@@ -150,7 +153,7 @@
 <center><div id="csata_elet"></div></center>
 <center><div id="csata_elet_e"></div></center>
 <center><div id="eredmeny"></div></center>
-<button onclick="Csata(10,8,8,2,1)">Harc_próba</button>
+<button onclick="Csata(10,10,9,6,1)">Harc_próba</button>
 <div></div>
 
 </body>
