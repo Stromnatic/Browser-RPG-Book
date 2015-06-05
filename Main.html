@@ -58,6 +58,174 @@
 		if(jatekos < ellenfel){
 			//ellenfel kezd
 			document.getElementById("kezdes").innerHTML="Ellenfél kezd";
+			repeater = setInterval(function(){ Harc(false); },1000);
+			
+			/*if(Harc(false)){
+				//Jatekos nyert!
+				document.getElementById("eredmeny").innerHTML="Jatekos nyert";
+			}
+			else{
+				//Jatekos vesztett
+				document.getElementById("eredmeny").innerHTML="Jatekos vesztett";
+			}*/
+		}
+		else{				  
+			//jatekos kezd
+			document.getElementById("kezdes").innerHTML="Jatekos kezd";
+			repeater = setInterval(function(){ Harc(true); },1000);
+			
+			/*if(Harc(true)){
+				//Jatekos nyert!
+				document.getElementById("eredmeny").innerHTML="Jatekos nyert";
+			}
+			else{
+				//Jatekos vesztett
+				document.getElementById("eredmeny").innerHTML="Jatekos vesztett";
+			}
+		}
+		clearInterval(repeater);*/
+		}
+	}
+	
+	function Harc(kezdes){
+	
+			document.getElementById("csata_elet").innerHTML="Életerőd: "+elet;
+			document.getElementById("csata_elet_e").innerHTML="Életerereje: "+ellenfel_eletero;
+		
+			if(kezdes){		//jatekos tamad
+				tamadoero = Math.floor((Math.random()*11)+2);
+				tamadoero += tamadas;
+				if(tamadoero > ellenfel_vedettseg){ //megsebezve
+					ellenfel_eletero -= Math.floor((Math.random()* max_jatekos)+min_sebzes);
+					document.getElementById("csata_elet_e").innerHTML="Életerereje: "+ellenfel_eletero;
+					kezdes=false;
+					if(ellenfel_eletero <= 0){ 
+					clearInterval(repeater);
+					document.getElementById("eredmeny").innerHTML="Jatekos nyert";
+					//return true; //nyert
+					}
+				}
+				else{ 
+				//elkerülte a támadást 
+				}
+			}
+			else{ 			//ellenfel tamad
+				tamadoero = Math.floor((Math.random()*11)+2);
+				tamadoero += ellenfel_tamadas;
+				if(tamadoero > vedettseg){ //megsebezve
+					elet -= Math.floor((Math.random()* max_ellenfel)+min_sebzes_e);
+					document.getElementById("csata_elet").innerHTML="Életerőd: "+elet;
+					kezdes=true;
+					if(elet <= 0){ 
+					clearInterval(repeater);
+					document.getElementById("eredmeny").innerHTML="Jatekos vesztett";
+					return false; //vesztett 
+					}
+				}
+				else{ 
+				//elkerülte a támadást
+				}
+			}
+	}
+	
+	function Csata(ellenfel_eletero,ellenfel_tamadas,ellenfel_vedettseg,max_sebzes_e,min_sebzes_e){
+		this.ellenfel_eletero=ellenfel_eletero;
+		this.ellenfel_tamadas=ellenfel_tamadas;
+		this.ellenfel_vedettseg=ellenfel_vedettseg;
+		this.max_sebzes_e=max_sebzes_e;
+		this.min_sebzes_e=min_sebzes_e;
+		max_ellenfel = max_sebzes_e - min_sebzes_e + 1;
+		Kuzdelem();
+	}
+	-->
+	</script>
+</head>
+<body>
+
+<div id="eletero_kezdeti"></div>
+<div id="eletero_valtozott"></div>
+
+<div id="tamadas_kezdeti"></div>
+<div id="tamadas_valtozott"></div>
+
+<div id="vedettseg_kezdeti"></div>
+<div id="vedettseg_valtozott"></div>
+
+<div id="szerencse_kezdeti"></div>
+<div id="szerencse_valtozott"></div>
+
+<div id="magia_kezdeti"></div>
+<div id="magia_valtozott"></div>
+
+<button onclick="Feltoltes()">Feltoltes</button>
+<center><div id="kezdes"></div></center>
+<center><div id="csata_elet"></div></center>
+<center><div id="csata_elet_e"></div></center>
+<center><div id="eredmeny"></div></center>
+<button onclick="Csata(10,10,9,6,1)">Harc_próba</button>
+<div></div>
+
+</body>
+</html>
+<head>
+	<script>
+	<!--
+	var max_elet, elet;
+	var max_tamadas, tamadas;
+	var max_vedettseg, vedettseg;
+	var max_szerencse, szerencse;
+	var max_magia=0, magia=0;
+	var max_sebzes=2, min_sebzes=1;
+	var max_sebzes_e, min_sebzes_e;
+	var ellenfel_eletero, ellenfel_vedettseg, ellenfel_tamadas;
+	var	max_jatekos = max_sebzes - min_sebzes + 1; //2 sebzés közötti különbség, randomolásnál kell
+	var	max_ellenfel;
+	var repeater;
+	
+	function Max_Eletero(){
+		max_elet=Math.floor((Math.random()*21)+14);
+		elet=max_elet;
+		document.getElementById("eletero_kezdeti").innerHTML=max_elet;
+		document.getElementById("eletero_valtozott").innerHTML=max_elet;
+	}
+	function Max_Tamadas(){
+		max_tamadas=Math.floor((Math.random()*11)+8);
+		tamadas=max_tamadas;
+		document.getElementById("tamadas_kezdeti").innerHTML=max_tamadas;
+		document.getElementById("tamadas_valtozott").innerHTML=max_tamadas;
+	}
+	function Max_Vedettseg(){
+		max_vedettseg=Math.floor((Math.random()*11)+8);
+		vedettseg=max_vedettseg;
+		document.getElementById("vedettseg_kezdeti").innerHTML=max_vedettseg;
+		document.getElementById("vedettseg_valtozott").innerHTML=max_vedettseg;
+	}
+	function Max_Szerencse(){
+		max_szerencse=Math.floor((Math.random()*6)+7);
+		szerencse=max_szerencse;
+		document.getElementById("szerencse_kezdeti").innerHTML=max_szerencse;
+		document.getElementById("szerencse_valtozott").innerHTML=max_szerencse;
+	}
+	function Max_Magia(){
+		document.getElementById("magia_kezdeti").innerHTML="0";
+		document.getElementById("magia_valtozott").innerHTML="0";
+	}
+	function Feltoltes(){
+	Max_Eletero();
+	Max_Tamadas();
+	Max_Vedettseg();
+	Max_Szerencse();
+	Max_Magia();
+	}
+	
+	function Kuzdelem(){
+		//ki kezdjen?
+		jatekos = Math.floor((Math.random()*6)+1);
+		ellenfel = Math.floor((Math.random()*6)+1);
+		
+		if(jatekos < ellenfel){
+			//ellenfel kezd
+			document.getElementById("kezdes").innerHTML="Ellenfél kezd";
 			if(Harc(false)){
 				//Jatekos nyert!
 				document.getElementById("eredmeny").innerHTML="Jatekos nyert";
