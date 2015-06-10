@@ -1,4 +1,4 @@
-
+﻿
 	var max_elet, elet;
 	var max_tamadas, tamadas;
 	var max_vedettseg, vedettseg;
@@ -14,7 +14,8 @@
 	var menekules=false;
 	var kigyo1_elet=32;
 	var kigyo2_elet=28;
-	var kigyo=true;
+	var kigyo=true; //1-es vagy 2-es kígyót támad
+	var illuzio=false; //kígyó illuzio 
 	
 	function Random(szam1,szam2){
 		return Math.floor((Math.random()*szam1)+szam2);
@@ -304,43 +305,50 @@
 		}
 	}
 	function Kigyok(){
-		if(menekules){
-			tamadoero = Random(11,2);
-			tamadoero += ellenfel_tamadas+8;
-			Kigyok_tamadas(tamadoero);
-			menekules=false;
+		if(illuzio){
+			document.getElementById("eredmeny").innerHTML="A kígyók csak illúziók voltak!";
+			illuzio=false;
 			clearInterval(repeater);
-			if(elet>0) { document.getElementById("eredmeny").innerHTML="Elfutottál!"; }
 			Frissites();
 		}
 		else{
-			document.getElementById("csata_elet").innerHTML="Életerőd: "+elet;
-			document.getElementById("csata_elet_e").innerHTML="Első kígyó életerereje: "+ kigyo1_elet+"<br>Második kígyó életerereje: "+ kigyo2_elet;
-		}
-		
-		if(kezdes){		//jatekos tamad
-			if(kigyo1_elet<=0) { kigyo=false; }
-			if(kigyo2_elet<=0) { kigyo=true; }
-			if(kigyo){
+			if(menekules){
 				tamadoero = Random(11,2);
-				tamadoero += tamadas;
-				Elso_kigyo_tamadasa(tamadoero);
+				tamadoero += ellenfel_tamadas+8;
+				Kigyok_tamadas(tamadoero);
+				menekules=false;
+				clearInterval(repeater);
+				if(elet>0) { document.getElementById("eredmeny").innerHTML="Elfutottál!"; }
+				Frissites();
 			}
 			else{
-				tamadoero = Random(11,2);
-				tamadoero += tamadas;	
-				Masodik_kigyo_tamadasa(tamadoero);
+				document.getElementById("csata_elet").innerHTML="Életerőd: "+elet;
+				document.getElementById("csata_elet_e").innerHTML="Első kígyó életerereje: "+ kigyo1_elet+"<br>Második kígyó életerereje: "+ kigyo2_elet;
 			}
-			kezdes=false;
-		}
-		else{ 			//ellenfel tamad
-			tamadoero = Random(11,2);
-			tamadoero += ellenfel_tamadas;
-			Kigyok_tamadas(tamadoero);
-			kezdes=true;
+		
+			if(kezdes){		//jatekos tamad
+				if(kigyo1_elet<=0) { kigyo=false; }
+				if(kigyo2_elet<=0) { kigyo=true; }
+				if(kigyo){
+					tamadoero = Random(11,2);
+					tamadoero += tamadas;
+					Elso_kigyo_tamadasa(tamadoero);
+				}
+				else{
+					tamadoero = Random(11,2);
+					tamadoero += tamadas;	
+					Masodik_kigyo_tamadasa(tamadoero);
+				}
+				kezdes=false;
+			}
+			else{ 			//ellenfel tamad
+				tamadoero = Random(11,2);
+				tamadoero += ellenfel_tamadas;
+				Kigyok_tamadas(tamadoero);
+				kezdes=true;
+			}
 		}
 	}
-	
 	function Menekules(){
 		menekules=true;
 	}
@@ -349,4 +357,7 @@
 	}
 	function Masodikkigyo(){
 		kigyo=false;
+	}
+	function Illuziok(){
+		illuzio=true;
 	}
