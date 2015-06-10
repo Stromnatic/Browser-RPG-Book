@@ -1,0 +1,19 @@
+@charset "utf-8";
+/* CSS Document */
+#page
+{
+	display: inline-block;
+}
+body
+{
+	font: 12px Arial;
+	margin: auto;
+	background-size: 100% 100%;
+}
+#contest_t1 
+{
+    background: url("oke2.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
