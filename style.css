@@ -16,4 +16,12 @@ body
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
-
+table.kalandlap
+{
+	margin: 160px,60px,60px,60px;
+	}
+h6
+{
+	font-size:14px;
+	text-shadow: 0 0 3px #FF0000;
+	}
