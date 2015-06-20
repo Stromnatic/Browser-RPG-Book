@@ -46,13 +46,14 @@
 	Max_Szerencse();
 	Max_Magia();
 	Frissites();
+	document.getElementById('feltolt').style.visibility = 'hidden';
 	}
 	function Frissites(){
 		document.getElementById("eletero_kezdeti").innerHTML="Életerő: "+max_elet;
 		document.getElementById("eletero_valtozott").innerHTML="Életerő: "+elet;
 	
-		document.getElementById("tamadas_kezdeti").innerHTML="Támadás: "+max_tamadas;
-		document.getElementById("tamadas_valtozott").innerHTML="Támadás: "+tamadas;
+		document.getElementById("tamadas_kezdeti").innerHTML="Támadóerő: "+max_tamadas;
+		document.getElementById("tamadas_valtozott").innerHTML="Támadóerő: "+tamadas;
 	
 		document.getElementById("vedettseg_kezdeti").innerHTML="Védettség: "+max_vedettseg;
 		document.getElementById("vedettseg_valtozott").innerHTML="Védettség: "+vedettseg;
