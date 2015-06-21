@@ -1,4 +1,24 @@
-﻿/*----------------------------------------------------- TÖRTÉNET -----------------------------------------------------*/
+﻿/*----------------------------------------------------- TÖRTÉNET ----------------------------------------------*/
+/*----------------------------------------------------- Game over ---------------------------------------------*/
+function Game_Over()
+{
+	max_magia = magia = max_szerencse = szerencse = max_vedettseg = vedettseg = max_tamadas = tamadas = max_elet = elet = 0;
+	
+	document.getElementById("eletero_kezdeti").innerHTML="Életerő: "+max_elet;
+	document.getElementById("eletero_valtozott").innerHTML="Életerő: "+elet;
+	
+	document.getElementById("tamadas_kezdeti").innerHTML="Támadóerő: "+max_tamadas;
+	document.getElementById("tamadas_valtozott").innerHTML="Támadóerő: "+tamadas;
+	
+	document.getElementById("vedettseg_kezdeti").innerHTML="Védettség: "+max_vedettseg;
+	document.getElementById("vedettseg_valtozott").innerHTML="Védettség: "+vedettseg;
+		
+	document.getElementById("szerencse_kezdeti").innerHTML="Szerencse: "+max_szerencse;
+	document.getElementById("szerencse_valtozott").innerHTML="Szerencse: "+szerencse;
+	
+	document.getElementById("magia_kezdeti").innerHTML="Mágia: "+ max_magia;
+	document.getElementById("magia_valtozott").innerHTML="Mágia: "+magia;
+}
 /*----------------------------------------------------- 0 -----------------------------------------------------*/
 
 function nulla()
@@ -19,8 +39,11 @@ function nulla_script()
 	document.getElementById("tortenet").innerHTML += "<button id='enged' onclick='huszonnegy()'> Lapozz a 24-re! </button>"; 
 }
 /*----------------------------------------------------- 1 -----------------------------------------------------*/
-
-
+function egy()
+{
+	document.getElementById("tortenet").innerHTML = "Rossz ötlet volt megtámadni a lényt! Túlságosan erős, és meg sem tudod igazán sebezni,<br> míg ő ocsmány érintésével gond nélkül leszívja minden életerődet. <br>Kalandod véget ért!";
+	Game_Over();
+}
 
 /*----------------------------------------------------- 2 -----------------------------------------------------*/
 
