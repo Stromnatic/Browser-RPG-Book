@@ -16,6 +16,7 @@
 	var kigyo2_elet=28;
 	var kigyo=true; //1-es vagy 2-es kígyót támad
 	var illuzio=false; //kígyó illuzio 
+	var harceredmeny=0; //1-nyert 2-vesztett 3-elfutott
 	
 	function Random(szam1,szam2){
 		return Math.floor((Math.random()*szam1)+szam2);
@@ -65,7 +66,7 @@
 		document.getElementById("magia_valtozott").innerHTML="Mágia: "+magia;
 	}
 	
-	function Kuzdelem(){
+	function Kuzdelem(szam1,szam2){
 		//ki kezdjen?
 		jatekos = Random(6,1);
 		ellenfel = Random(6,1);
@@ -82,7 +83,7 @@
 				repeater = setInterval(function(){ Kigyok(); },1000); 
 			}
 			else{
-				repeater = setInterval(function(){ Harc(); },1000);
+				repeater = setInterval(function(){ Harc(szam1,szam2); },1000);
 			}
 		}
 		else{				  
@@ -93,19 +94,26 @@
 				repeater = setInterval(function(){ Kigyok(); },1000); 
 			}
 			else{
-				repeater = setInterval(function(){ Harc(); },1000);
+				repeater = setInterval(function(){ Harc(szam1,szam2); },1000);
 			}
 		}
 	}
 	
-	function Harc(){
+	function Harc(szam1,szam2){
 		if(menekules){
 			tamadoero = Random(11,2);
 			tamadoero += ellenfel_tamadas+8;
 			Ellenfel_tamad(tamadoero);
 			menekules=false;
 			clearInterval(repeater);
-			if(elet>0) { document.getElementById("eredmeny").innerHTML="Elfutottál!"; }
+			if(elet>0) { 
+				document.getElementById("eredmeny").innerHTML="Elfutottál!"; 
+				harceredmeny=3;
+			}
+			else{ harceredmeny=2;
+				id="g"+szam2;
+				document.getElementById(id).style.display = "inherit";
+			}
 			Frissites();
 		}
 		else{
@@ -115,19 +123,19 @@
 			if(kezdes){		//jatekos tamad
 				tamadoero = Random(11,2);
 				tamadoero += tamadas;
-				Jatekos_tamad(tamadoero);
+				Jatekos_tamad(tamadoero,szam1,szam2);
 				kezdes=false;
 			}
 			else{ 			//ellenfel tamad
 				tamadoero = Random(11,2);
 				tamadoero += ellenfel_tamadas;
-				Ellenfel_tamad(tamadoero);
+				Ellenfel_tamad(tamadoero,szam1,szam2);
 				kezdes=true;
 			}
 		}
 	}
 	
-	function Csata(ellenfel_nev,ellenfel_eletero,ellenfel_tamadas,ellenfel_vedettseg,max_sebzes_e,min_sebzes_e){
+	function Csata(ellenfel_nev,ellenfel_eletero,ellenfel_tamadas,ellenfel_vedettseg,max_sebzes_e,min_sebzes_e,szam1,szam2){
 		this.ellenfel_nev = ellenfel_nev;
 		this.ellenfel_eletero = ellenfel_eletero;
 		this.ellenfel_tamadas = ellenfel_tamadas;
@@ -135,40 +143,39 @@
 		this.max_sebzes_e = max_sebzes_e;
 		this.min_sebzes_e = min_sebzes_e;
 		max_ellenfel = max_sebzes_e - min_sebzes_e + 1;
-		Kuzdelem();
+		Kuzdelem(szam1,szam2);
 	}
 	
-	function Ellenfelek(szam){
+	function Ellenfelek(szam,szam1,szam2){
 		switch(szam){
-			case 1: Csata("Kőszobor",30,8,13,12,2); break;
-			case 2: Csata("Kecskepásztor",20,10,10,6,1); break;
-			case 3: Csata("Farkasember",25,14,10,6,1); break;
-			case 4: Csata("Sámán",29,14,16,12,2); break;
-			case 5: Csata("Kapuőrző Démon",80,18,20,10,5); break;
-			case 6: Csata("Rémkutya",10,10,9,6,1); break;
-			case 7: Csata("Kigyók",28,18,16,12,2); break;
-			case 8: Csata("Ajtó",13,8,11,3,1); break;
-			case 9: Csata("Hószörny",36,12,10,8,3); break;
-			case 10: Csata("Törpe",22,14,13,7,2); break;
-			case 11: Csata("Törpe",25,14,13,7,2); break; //128. 13
-			case 12: Csata("Rabló",13,11,10,6,1); break;
-			case 13: Csata("Törpe",25,14,13,7,2); break; //146. 11
-			case 14: Csata("Az alvilág őre",80,18,20,10,5); break; //149. 5
-			case 15: Csata("Jégóriás",35,14,10,12,2); break; //151.
-			case 16: Csata("Varázsló",11,8,6,0,0); break; //186.
-			case 17: Csata("Harcos nő",20,13,10,8,3); break;
-			case 18: Csata("Rabló",14,11,8,6,1); break; //208.
-			case 19: Csata("Rabló",12,12,10,8,3); break; //214.
-			case 20: Csata("Hószörny",36,12,10,7,2); break; //227.
-			case 21: Csata("Sivatagi szellem",30,12,18,4,4); break; //260.
-			case 22: Csata("Rukh fióka",12,10,7,6,1); break; //286.
-			
+			case 1: Csata("Kőszobor",30,8,13,12,2,szam1,szam2); break;
+			case 2: Csata("Kecskepásztor",20,10,10,6,1,szam1,szam2); break;
+			case 3: Csata("Farkasember",25,14,10,6,1,szam1,szam2); break;
+			case 4: Csata("Sámán",29,14,16,12,2,szam1,szam2); break;
+			case 5: Csata("Kapuőrző Démon",80,18,20,10,5,szam1,szam2); break;
+			case 6: Csata("Rémkutya",10,10,9,6,1,szam1,szam2); break;
+			case 7: Csata("Kigyók",28,18,16,12,2,szam1,szam2); break;
+			case 8: Csata("Ajtó",13,8,11,3,1,szam1,szam2); break;
+			case 9: Csata("Hószörny",36,12,10,8,3,szam1,szam2); break;
+			case 10: Csata("Törpe",22,14,13,7,2,szam1,szam2); break;
+			case 11: Csata("Törpe",25,14,13,7,2,szam1,szam2); break; //128. 13
+			case 12: Csata("Rabló",13,11,10,6,1,szam1,szam2); break;
+			case 13: Csata("Törpe",25,14,13,7,2,szam1,szam2); break; //146. 11
+			case 14: Csata("Az alvilág őre",80,18,20,10,5,szam1,szam2); break; //149. 5
+			case 15: Csata("Jégóriás",35,14,10,12,2,szam1,szam2); break; //151.
+			case 16: Csata("Varázsló",11,8,6,0,0,szam1,szam2); break; //186.
+			case 17: Csata("Harcos nő",20,13,10,8,3,szam1,szam2); break;
+			case 18: Csata("Rabló",14,11,8,6,1,szam1,szam2); break; //208.
+			case 19: Csata("Rabló",12,12,10,8,3,szam1,szam2); break; //214.
+			case 20: Csata("Hószörny",36,12,10,7,2,szam1,szam2); break; //227.
+			case 21: Csata("Sivatagi szellem",30,12,18,4,4,szam1,szam2); break; //260.
+			case 22: Csata("Rukh fióka",12,10,7,6,1,szam1,szam2); break; //286.
 			default: break;
 		}
 	}
 	
 	//támadások
-	function Jatekos_tamad(tamadoero){
+	function Jatekos_tamad(tamadoero,szam1,szam2){
 				document.getElementById("csata_kiteres").innerHTML="";
 		if(tamadoero > ellenfel_vedettseg){ //megsebezve
 			sebzes = Random(max_jatekos,min_sebzes);
@@ -182,6 +189,9 @@
 			if(ellenfel_eletero <= 0){ 
 				clearInterval(repeater);
 				document.getElementById("eredmeny").innerHTML="Jatekos nyert";
+				id="g"+szam1;
+				document.getElementById(id).style.display = "inherit";
+				harceredmeny=1;
 				Frissites();
 				//nyert
 			}
@@ -191,7 +201,7 @@
 		document.getElementById("csata_kiteres_e").innerHTML="Elkerülte a Támadást!";
 		}
 	}
-	function Ellenfel_tamad(tamadoero){
+	function Ellenfel_tamad(tamadoero,szam1,szam2){
 				document.getElementById("csata_kiteres_e").innerHTML="";
 		if(tamadoero > vedettseg){ //megsebezve
 			if(ellenfel_nev=="Varázsló"){ //ha a varázsló eltalál vége
@@ -208,6 +218,9 @@
 			if(elet <= 0){ 
 				clearInterval(repeater);
 				document.getElementById("eredmeny").innerHTML="Jatekos vesztett";
+				id="g"+szam2;
+				document.getElementById(id).style.display = "inherit";
+				harceredmeny=2;
 				Frissites();
 				//vesztett 
 				}
@@ -227,6 +240,7 @@
 			if(kigyo1_elet <= 0 && kigyo2_elet <= 0){ 
 				clearInterval(repeater);
 				document.getElementById("eredmeny").innerHTML="Jatekos nyert";
+				harceredmeny=1;
 				Frissites();
 				//nyert
 			}
@@ -246,6 +260,7 @@
 			if(kigyo1_elet <= 0 && kigyo2_elet <= 0){ 
 				clearInterval(repeater);
 				document.getElementById("eredmeny").innerHTML="Jatekos nyert";
+				harceredmeny=1;
 				Frissites();
 				//nyert
 			}
@@ -267,6 +282,7 @@
 				if(elet <= 0){ 
 					clearInterval(repeater);
 					document.getElementById("eredmeny").innerHTML="Jatekos vesztett";
+					harceredmeny=2;
 					Frissites();
 					//vesztett 
 				}
@@ -294,6 +310,7 @@
 					if(elet <= 0){ 
 						clearInterval(repeater);
 						document.getElementById("eredmeny").innerHTML="Jatekos vesztett";
+						harceredmeny=2;
 						Frissites();
 						//vesztett 
 					}
@@ -310,6 +327,7 @@
 			document.getElementById("eredmeny").innerHTML="A kígyók csak illúziók voltak!";
 			illuzio=false;
 			clearInterval(repeater);
+			harceredmeny=1; //ha elég a győzelem
 			Frissites();
 		}
 		else{
@@ -319,7 +337,11 @@
 				Kigyok_tamadas(tamadoero);
 				menekules=false;
 				clearInterval(repeater);
-				if(elet>0) { document.getElementById("eredmeny").innerHTML="Elfutottál!"; }
+				if(elet>0) { 
+				document.getElementById("eredmeny").innerHTML="Elfutottál!"; 
+				harceredmeny=3;
+				}
+				else{ harceredmeny=2; }
 				Frissites();
 			}
 			else{
@@ -362,3 +384,10 @@
 	function Illuziok(){
 		illuzio=true;
 	}
+	
+	function Eltuntet(){
+				for(i=1;i<303;i++){
+				id="g"+i;
+				document.getElementById(id).style.display = "none";
+				}
+			}
