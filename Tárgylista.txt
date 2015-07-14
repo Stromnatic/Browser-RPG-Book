@@ -1,0 +1,1 @@
+Kulacs, amely gránátalma nagyságú: gkulacs;

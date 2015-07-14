@@ -41,14 +41,83 @@ function nulla_script()
 /*----------------------------------------------------- 1 -----------------------------------------------------*/
 function egy()
 {
-	document.getElementById("tortenet").innerHTML = "Rossz ötlet volt megtámadni a lényt! Túlságosan erős, és meg sem tudod igazán sebezni,<br> míg ő ocsmány érintésével gond nélkül leszívja minden életerődet. <br>Kalandod véget ért!";
-	Game_Over();
+	document.getElementById("tortenet").innerHTML = "Megragadod a kopogtatót, és határozott mozdulatokkal megveregeted vele az ajtót. Tompa döndülés hullámzik végig az épületen, <br>de nem történik semmi. Vársz egy darabig, és már újra a karikáért nyúlnál, de ekkor csoszogó lépteket hallasz közeledni, majd kinyílik az ajtó.Egy tíz év körüli legényke áll előtted, aki egy jókora hétágú gyertyatartót cipel magával, <br>amelyben azonban csak egyetlen gyertya ég. A kisfiú csupán vászontunikát visel, melyet egyszerű kötéllel fog össze a derekán.<br>- A kastély urát keresem! - mondod a kisfiúnak.<br>- Úrnőm még ébren van - válaszol a legényke szokatlanul mély hangon. - Jöjj velem, kérlek, és elvezetlek hozzá!<br>Köszönetet mondasz és követed a fiúcskát a kestély belsejébe.<br><button id='gomb209' onclick='szazhatvanegy()'> Lapozz a 161-re! </button>";
 }
 
 /*----------------------------------------------------- 2 -----------------------------------------------------*/
-
-
-
+function ketto()
+{
+	document.getElementById("tortenet").innerHTML = "Rossz ötlet volt megtámadni a lényt! Túlságosan erős, és meg sem tudod igazán sebezni,<br> míg ő ocsmány érintésével gond nélkül leszívja minden életerődet.<br><b>Kalandod véget ért!</b>";
+	Game_Over();
+}
+/*----------------------------------------------------- 3 -----------------------------------------------------*/
+function harom()
+{
+	document.getElementById("tortenet").innerHTML = "Már harc közben is úgy tűnt neked, mintha számtalan árny suhanna el rendkívüli sebességgel a démon mellett.<br>Amikor az utolsó is eltűnik a fényben, hangos örömujjongást hallasz, mire a szörny felhördül, és döhödten utánuk veti magát,<br>veled pedig nem törődik tovább.<br>Amint a démon eltűnik a vakító fényben, amilyen gyorsan csak a lábad bírja, nekivágsz a lépcsősornak, amely a felső világba vezet. <br>Alaposan elfáradsz, mire a megszámlálhatatlan lépcsőfok tetejére érsz. Bár tartottál attól, hogy a Kapuőr utánad jön, <br>szerencsére nem hagyta el az őrhelyét.<br>A felszínre érve szusszansz egy nagyot, és elindulsz, hogy megkeresd a kulcsot a csillaggal jelölt kő mögött.<br><button id='gomb209' onclick='ketszazkilenc()'> Lapozz a 209-re! </button>"
+}
+/*----------------------------------------------------- 4 -----------------------------------------------------*/
+function negy()
+{	
+	document.getElementById("tortenet").innerHTML = "Sem időd, sem kedved nincs összetűzésbe keveredni senkivel, ezért épp ellenkező irányba indulsz el.<br>Jó ideig bandukolsz a pusztában, és ez meglehetősen fárasztó, hiszen a lábad néhol bokáig süllyed a homokba, és a nap is kegyetlenül tűz. <br><button id='gomb193' onclick='szazkilencvenharom()'> Lapozz a 193-re! </button>"
+	negy_script();
+}
+function negy_script()
+{
+	for(i=0; i<targyak.length; i++)
+	{
+		if(targyak[i] == "gkulacs")
+		{
+			document.getElementById("tortenet").innerHTML += "<br>Ha van nálad egy kis kulacs, amely gránátalma nagyságú: <button id='gomb261' onclick='ketszazhatvanegy()'> Lapozz a 261-re! </button>"
+		}
+	}
+}
+/*----------------------------------------------------- 5 -----------------------------------------------------*/
+function ot()
+{
+	document.getElementById("tortenet").innerHTML = "Megpróbálod meg védeni az életed, de hiába. A parasztok puszta kézzel és botokkal esnek neked, s hiába vágsz le közülük néhányat, <br>ez csak olaj a tűzre. Valaki hátulról a nyakadba ugrik, és leránt a földre, a feldühödött falusiak pedig örjöngve agyonvernek...<br><b>Kalandod véget ért!</b>"
+	Game_Over();
+}
+/*----------------------------------------------------- 6 -----------------------------------------------------*/
+function hat()
+{
+	document.getElementById("tortenet").innerHTML = "Alig kezdesz el lefelé ereszkedni, amikor a kezed megcsúszik, elveszíted egyensúlyodat, <br>és hatalmasat zuhanva érsz földet. <i> Veszítesz 15 életerőpontot! </i> <br><br>"
+	hat_script();
+}
+function hat_script()
+{
+	elet -= 15;
+	document.getElementById("eletero_valtozott").innerHTML="Életerő: "+elet;
+	if(elet <= 0)
+	{
+		document.getElementById("tortenet").innerHTML += "<br><b>Kalandod véget ért!</b>";
+		Game_Over();
+	}
+	else { document.getElementById("tortenet").innerHTML += "<br> Túlélted a zuhanást, feltápászkodsz, és sajgó tagjaidat tapogatva indulsz utadra. <br> <button id='gomb261' onclick='ketszazhetvenharom()'> Lapozz a 273-re! </button>" }
+}
+/*----------------------------------------------------- 7 -----------------------------------------------------*/
+function het()
+{
+	document.getElementById("tortenet").innerHTML = "Kíváncsian folytatod a keresgélést. A kőfülkével szemközt lévő falat is végigtapogatod. <br>Amikor az egyik kőlapot megnyomod, a fal egy része felfelé becsúszik egy vájatba, és újabb kőszobor válik láthatóvá az így  <br>feltárult fülkében. Olyan, mint az előző, és sajnos, ez is életre kél lassan, merev mozdulatokkal. <br>Lelép a talpazatról, és ütésre lendíti buzogányát. Meg kell küzdened vele!<br>" /*harc!*/
+	het_script();
+}
+het_script()
+{
+	Ellenfelek(1);
+}
+/*INNEN FOLYTATOM!*/
+/*----------------------------------------------------- 261 -----------------------------------------------------*/
+function ketszazhatvanegy()
+{
+	
+}
+function ketszazhatvanegy_script()
+{
+	for(i=0; i<targyak.length; i++)
+	{
+		if(targyak[i] == "gkulacs")
+		{targyak[i] = "";}
+	}
+}
 /*----------------------------------------------------- 24 -----------------------------------------------------*/
 /*PRÓBA*/
 function huszonnegy()
