@@ -1,5 +1,6 @@
 ﻿/*----------------------------------------------------- TÖRTÉNET ----------------------------------------------*/
 /*----------------------------------------------------- Game over ---------------------------------------------*/
+/*-----------fx()-funkció-------------------------------------sx()-script--------------------------------------*/
 function Game_Over()
 {
 	max_magia = magia = max_szerencse = szerencse = max_vedettseg = vedettseg = max_tamadas = tamadas = max_elet = elet = 0;
@@ -19,7 +20,7 @@ function Game_Over()
 	document.getElementById("magia_kezdeti").innerHTML="Mágia: "+ max_magia;
 	document.getElementById("magia_valtozott").innerHTML="Mágia: "+magia;
 }
-/*----------------------------------------------------- 0 -----------------------------------------------------*/
+/*----------------------------------------------------- 0 ------------------------------------------------------*/
 
 function f0()
 {
@@ -40,7 +41,7 @@ function s0()
 	//document.getElementById("tortenet").innerHTML += "<button id='enged' onclick='f24()'> Lapozz a 24-re! </button>"; 
 	document.getElementById("g24").style.display = "inherit";
 }
-/*----------------------------------------------------- 1 -----------------------------------------------------*/
+/*----------------------------------------------------- 1 ------------------------------------------------------*/
 function f1()
 {
 	document.getElementById("tortenet").innerHTML = "Megragadod a kopogtatót, és határozott mozdulatokkal megveregeted vele az ajtót. Tompa döndülés hullámzik végig az épületen, <br>de nem történik semmi. Vársz egy darabig, és már újra a karikáért nyúlnál, de ekkor csoszogó lépteket hallasz közeledni, majd kinyílik az ajtó.Egy tíz év körüli legényke áll előtted, aki egy jókora hétágú gyertyatartót cipel magával, <br>amelyben azonban csak egyetlen gyertya ég. A kisfiú csupán vászontunikát visel, melyet egyszerű kötéllel fog össze a derekán.<br>- A kastély urát keresem! - mondod a kisfiúnak.<br>- Úrnőm még ébren van - válaszol a legényke szokatlanul mély hangon. - Jöjj velem, kérlek, és elvezetlek hozzá!<br>Köszönetet mondasz és követed a fiúcskát a kestély belsejébe.";
@@ -48,21 +49,21 @@ function f1()
 	document.getElementById("g161").style.display = "inherit";
 }
 
-/*----------------------------------------------------- 2 -----------------------------------------------------*/
+/*----------------------------------------------------- 2 ------------------------------------------------------*/
 function f2()
 {
 	document.getElementById("tortenet").innerHTML = "Rossz ötlet volt megtámadni a lényt! Túlságosan erős, és meg sem tudod igazán sebezni,<br> míg ő ocsmány érintésével gond nélkül leszívja minden életerődet.<br><b>Kalandod véget ért!</b>";
 	Game_Over();
 	document.getElementById("g2").style.display = "none";
 }
-/*----------------------------------------------------- 3 -----------------------------------------------------*/
+/*----------------------------------------------------- 3 ------------------------------------------------------*/
 function f3()
 {
 	document.getElementById("tortenet").innerHTML = "Már harc közben is úgy tűnt neked, mintha számtalan árny suhanna el rendkívüli sebességgel a démon mellett.<br>Amikor az utolsó is eltűnik a fényben, hangos örömujjongást hallasz, mire a szörny felhördül, és döhödten utánuk veti magát,<br>veled pedig nem törődik tovább.<br>Amint a démon eltűnik a vakító fényben, amilyen gyorsan csak a lábad bírja, nekivágsz a lépcsősornak, amely a felső világba vezet. <br>Alaposan elfáradsz, mire a megszámlálhatatlan lépcsőfok tetejére érsz. Bár tartottál attól, hogy a Kapuőr utánad jön, <br>szerencsére nem hagyta el az őrhelyét.<br>A felszínre érve szusszansz egy nagyot, és elindulsz, hogy megkeresd a kulcsot a csillaggal jelölt kő mögött."
 	document.getElementById("g3").style.display = "none";
 	document.getElementById("g209").style.display = "inherit";
 }
-/*----------------------------------------------------- 4 -----------------------------------------------------*/
+/*----------------------------------------------------- 4 ------------------------------------------------------*/
 function f4()
 {	
 	document.getElementById("tortenet").innerHTML = "Sem időd, sem kedved nincs összetűzésbe keveredni senkivel, ezért épp ellenkező irányba indulsz el.<br>Jó ideig bandukolsz a pusztában, és ez meglehetősen fárasztó, hiszen a lábad néhol bokáig süllyed a homokba, és a nap is kegyetlenül tűz."
@@ -80,14 +81,14 @@ function s4()
 		}
 	}
 }
-/*----------------------------------------------------- 5 -----------------------------------------------------*/
+/*----------------------------------------------------- 5 ------------------------------------------------------*/
 function f5()
 {
 	document.getElementById("tortenet").innerHTML = "Megpróbálod meg védeni az életed, de hiába. A parasztok puszta kézzel és botokkal esnek neked, s hiába vágsz le közülük néhányat, <br>ez csak olaj a tűzre. Valaki hátulról a nyakadba ugrik, és leránt a földre, a feldühödött falusiak pedig örjöngve agyonvernek...<br><b>Kalandod véget ért!</b>"
 	Game_Over();
 	document.getElementById("g5").style.display = "none";
 }
-/*----------------------------------------------------- 6 -----------------------------------------------------*/
+/*----------------------------------------------------- 6 ------------------------------------------------------*/
 function f6()
 {
 	document.getElementById("tortenet").innerHTML = "Alig kezdesz el lefelé ereszkedni, amikor a kezed megcsúszik, elveszíted egyensúlyodat, <br>és hatalmasat zuhanva érsz földet. <i> Veszítesz 15 életerőpontot! </i> <br><br>"
@@ -105,7 +106,7 @@ function s6()
 	}
 	else { document.getElementById("tortenet").innerHTML += "<br> Túlélted a zuhanást, feltápászkodsz, és sajgó tagjaidat tapogatva indulsz utadra. <br> <button id='gomb261' onclick='ketszazhetvenharom()'> Lapozz a 273-re! </button>" }
 }
-/*----------------------------------------------------- 7 -----------------------------------------------------*/
+/*----------------------------------------------------- 7 ------------------------------------------------------*/
 function f7()
 {
 	document.getElementById("tortenet").innerHTML = "Kíváncsian folytatod a keresgélést. A kőfülkével szemközt lévő falat is végigtapogatod. <br>Amikor az egyik kőlapot megnyomod, a fal egy része felfelé becsúszik egy vájatba, és újabb kőszobor válik láthatóvá az így  <br>feltárult fülkében. Olyan, mint az előző, és sajnos, ez is életre kél lassan, merev mozdulatokkal. <br>Lelép a talpazatról, és ütésre lendíti buzogányát. Meg kell küzdened vele!<br>" /*harc!*/
@@ -116,7 +117,80 @@ function s7()
 {
 	Ellenfelek(1,159,95);
 }
-/*INNEN FOLYTATOM!*/
+/*----------------------------------------------------- 8 ------------------------------------------------------*/
+function f8()
+{
+	document.getElementById("tortenet").innerHTML = "Letörlöd fegyveredről a vért, és szemügyre veszed a helyet, ahol állsz. Legalább 20 méter magas az a kőszál, <br>amin ácsorogsz, tetejének lapos felülete pedig nagyából száz négyzetméter. <br>Falai függőlegesen zuhannak alá.<br>A rukhmadár fészke tulajdonképpen nem más, mint hatalmas kőtömbökből kirakott kör, ami körbefut a kőszál peremén. <br>Rengeteg megszáradt vér és csonttöredék utal a madarak korábbi lakomáira. <br> Tisztában vagy vele, hogy sürgősen le kell jutnod innen, mert ha a felnőtt kukh visszatér, és ott talál <br>döglött fiókája mellett, biztosan nem lesz barátságos veled. <br>Körülnézel, hogy vihetnél-e magaddal valami hasznos dolgot. <br> Mivel semmi használható tárgyat sem találsz, jobb ötleted nem lévén levágod a döglött fióka hatalmas <br> csillogó karmait, és hátizsákodba teszed.<br>";
+	/*+1 tárgy: fióka karmai*/
+	document.getElementById("tortenet").innerHTML += "Ha megpróbálsz lemászni a sziklafalon, ";
+		document.getElementById("g48").style.display = "inherit";
+		if(targyak[i]=="grifftoll")
+		{
+			document.getElementById("tortenet").innerHTML += "<br> Ha van nálad egy griff tolla, és most felhasználod, ";
+			document.getElementById("g171").style.display = "inherit";
+		}
+	document.getElementById("tortenet").innerHTML += "<br> Ha más megoldást választanál, ";
+		document.getElementById("g123").style.display = "inherit";
+}
+/*----------------------------------------------------- 9 ------------------------------------------------------*/
+function f9()
+{
+	document.getElementById("tortenet").innerHTML = "Arra ébredsz, hogy égető fájdalom hasít a ball válladba.<br> Ösztönösen odakapsz, és egy nyílvesszőre tapintasz, amely csak belekarcolt a húsodba, <br>de így is vérző sebet hasított rajtad. (Veszítesz 2 életerő pontot!)<br> Csak ezután jut el a tudatodig a káosz, ami úrrá lett a békésen pihenő táboron. <br>A tüzek lassan kialvó fényében fekete alakokat látsz leözönleni a környező <br>homokdűnékről, és vad kézitusa veszi kezdetét a sivatagi éjszakában.";
+	s9();
+}
+function s9()
+{
+	elet-=2;
+	document.getElementById("eletero_valtozott").innerHTML="Életerő: " + elet;
+	if(elet <= 0)
+	{
+		document.getElementById("tortenet").innerHTML += "<br><b>Kalandod véget ért!</b>";
+		Game_Over();
+	}
+	else{document.getElementById("g208").style.display = "inherit";}
+}
+/*----------------------------------------------------- 10 -----------------------------------------------------*/
+function f10()
+{
+	document.getElementById("tortenet").innerHTML = "Egyedül maradtál a teremben. Ehyelőre nem fenyeget veszély, odalépsz az állványon pihenő kristálygömbhöz. Óvatosan leveszed a helyéről, és a tarisznyádba teszed. Alig van súlya, állapítod meg, pedig meglehetősen keménynek tűnik. Talán nem törik el a továbbiakban sem.<br> Mivel itt már nincs több keresnivalód, megmarkolod a nyakadban lógó medált, amit kalandod elején az öregembertől kaptál, és erősen próbálod magadban felidézni azt a termet, ahonnan elindultál.<br> A medálból furcsa melegség kezd áradni, és mintha vad forgószél kapna fel. Kavargó, szédítő érzés kerít hatalmába, majd amikor elmúlik, és újra kinyitod a szemed, a három festmény termében találod magad.<br> Mivel elfáradtál, s úgy érzed, itt biztonságban vagy, alszol egy jót, majd ébredés után újabb kalandra indulsz.";
+	s10();
+}
+function s10()
+{
+	elet = max_elet;
+	document.getElementById("eletero_valtozott").innerHTML="Életerő: " + elet;
+	document.getElementById("tortenet").innerHTML += "Ha a jégmezőre indulsz, ";
+		document.getElementById("g169").style.display = "inherit";
+	document.getElementById("tortenet").innerHTML += "Ha a sivatagba mennél, ";
+		document.getElementById("g266").style.display = "inherit";
+}
+/*----------------------------------------------------- 11 -----------------------------------------------------*/
+function f11()
+{
+	document.getElementById("tortenet").innerHTML = "Egy hatalmas, legalább három méter magas, emberforma élőlénnyel találod szmben magad, aki egy meglepő nagyságú husángot lóbál.<br> A fickó hosszúkás, darabos arcvonásai haragot és elszántságot tükröznek.<br> Rajta kívül egy kecskét is látsz odabenn, de azok cask heverésznek a földön. A pásztorral kell tehát megküzdened.";
+	s11();
+}
+function s11()
+{
+	Ellenfelek(2,300,219);
+}
+/*----------------------------------------------------- 12 -----------------------------------------------------*/
+function f12()
+{
+	document.getElementById("tortenet").innerHTML = "Biztosan a szédítő utazás meg a sivatagi nap melege teszi, de egyáltalán nem vagy formában. A fióka villámgyors csőrvágásokkal mind súlyosabb sebeket okoz neked, végül egy hatalmas csapással bezúzza a koponyádat. Most már te is az ő tápláléka leszel!<br><b>Kalandod véget ért!</b>";
+	Game_Over(); 
+}
+/*----------------------------------------------------- 13 -----------------------------------------------------*/
+function f13()
+{
+	document.getElementById("tortenet").innerHTML = "kemény harcban sikerül legyőznöd ellenfeledet. Ahogy elvágódik a poros padlón, apró darabokra zúzódik hatalmas kőteste. Megkönnyebbülten ereszted le kardodat, amely itt-ott kicsorbúlt a kődémonnal vívott ütközet során. Ezután jobban körülnézel a folyosón, ahova kerültél.";
+	document.getElementById("tortenet").innerHTML += "<br> Ha vizsgálódsz itt egy darabig, ";
+		document.getElementById("g235").style.display = "inherit";
+	document.getElementById("tortenet").innerHTML += "<br> Ha egyből tovább indulsz, ";
+		document.getElementById("g159").style.display = "inherit";
+}
+
+
 /*----------------------------------------------------- 24 -----------------------------------------------------*/
 /*PRÓBA*/
 function f24()
